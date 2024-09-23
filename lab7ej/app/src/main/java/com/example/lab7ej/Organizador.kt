@@ -46,3 +46,39 @@ fun Org(){
         }
     }
 }
+
+@Composable
+fun Org2(){
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "D"){
+
+        composable(route = "D"){
+            ScreenD(navController)
+        }
+
+        composable(route = "E?uni={uni}&carrera={carrera}&anio={anio}",
+            arguments = listOf(
+                navArgument(name = "uni"){
+                    type = NavType.StringType
+                    nullable = true
+                },
+                navArgument(name = "anio"){
+                    type = NavType.IntType
+                    defaultValue = 0
+                },
+                navArgument(name = "carrera"){
+                    type = NavType.StringType
+                    defaultValue = "Vacio"
+                }
+            )
+        ){ backstackEntry ->
+            ScreenE(
+                navController,
+                uni = backstackEntry.arguments?.getString("uni"),
+                anio = backstackEntry.arguments?.getInt("anio"),
+                carrera = backstackEntry.arguments?.getString("carrera")
+            )
+        }
+
+    }
+}
