@@ -60,7 +60,7 @@ fun Org2(){
             arguments = listOf(
                 navArgument(name = "uni"){
                     type = NavType.StringType
-                    nullable = true
+                    defaultValue = "Ingresa la universidad"
                 },
                 navArgument(name = "anio"){
                     type = NavType.IntType
